@@ -123,6 +123,7 @@ time {
 #gallery ul{
     width: 150px;
     list-style-type: none;
+    display: inline;
 }
 
 #gallery li{
@@ -135,6 +136,9 @@ time {
     font-style: italic;
 }
 
+#gallery figcaption{
+    text-align: center;
+}
 #gallery span {
     display: none;
 }
@@ -143,7 +147,7 @@ time {
     display: block;
     position: fixed;
     top: 100px;
-    left: 450px;
+    left: 1020px;
     text-align: center;
 }
 
