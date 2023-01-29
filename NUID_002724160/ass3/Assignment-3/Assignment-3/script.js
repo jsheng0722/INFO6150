@@ -93,19 +93,6 @@ function addNewRow(){
   } else {
     alert('Failed to add \"' + newTrRef + '\".');
   }
-  
-
-  // // find last student.
-  // var newTrRef = document.getElementById("myTable").lastElementChild.lastElementChild.previousElementSibling?.firstElementChild?.nextElementSibling?.innerHTML;
-  // // split to get number
-  // var newLastestIndex = newTrRef.split(" ")[1];
-
-  // // judge if add successful or not
-  // if (newLastestIndex == parseInt(lastestIndex) + 1){
-  //   alert('Add \"' + newTrRef + '\" successful.');
-  // } else{
-  //   alert('Failed to add \"' + newTrRef + '\".');
-  // }
 }
 
 /**
@@ -117,13 +104,13 @@ function onCheckboxClick(checkbox){
 
   if (checkbox.checked == true){
     rowSelect.style.backgroundColor = "yellow";
-    
+
     boxChecked++; 
     //delete button
     var deleteButton = document.createElement("td");
     deleteButton.setAttribute("id","deleteTd");
     deleteButton.innerHTML = 
-    '<button id="delete" type="button" onclick="deleteRow(this)">Delete</button>';
+    '<button id="delete" type="button" onclick="deleteThisRow(this)">Delete</button>';
     
     //edit button
     var editButton = document.createElement("td");
@@ -146,7 +133,7 @@ function onCheckboxClick(checkbox){
  * Delete row
  * @param {*} rowObject 
  */
-function deleteRow(rowObject){
+function deleteThisRow(rowObject){
   var info = rowObject.parentElement.parentElement.firstElementChild.nextElementSibling.innerHTML;
   var tr = rowObject.parentElement.parentElement;
   var tr2 = tr.nextElementSibling;
@@ -167,13 +154,19 @@ function deleteRow(rowObject){
  */
 function verifyCheckbox(){
   var submitButton = document.getElementById("button");
+  var deleteButtonTh = document.getElementById("delete");
+  var editButtonTh = document.getElementById("edit");
   if (boxChecked != 0){
     submitButton.setAttribute("disable","false");
     submitButton.style.backgroundColor = "orange";
+    editButtonTh.style.display = "table-cell";
+    deleteButtonTh.style.display = "table-cell";
   }
   else{
     submitButton.setAttribute("disable","true");
     submitButton.style.backgroundColor = "gray";
+    editButtonTh.style.display = "none";
+    deleteButtonTh.style.display = "none";
   }
 }
 
@@ -184,7 +177,7 @@ function verifyCheckbox(){
 function editRow(rowObject){
   var info = rowObject.parentElement.parentElement.firstElementChild.nextElementSibling.innerHTML;
   // alert("Edit the details for " + '\"' + info +'\"');
-  alert("Edit the details");
+  prompt("Edit the details");
 }
 
 /**

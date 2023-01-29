@@ -20,6 +20,15 @@
 	color: #fff;
 	background-color: #a7c942;
 }
+
+#myTable tr > #delete {
+	display: none;
+}
+
+#myTable tr > #edit {
+	display: none;
+}
+
 #button {
 	color:#fff;
 	background-color: grey;
