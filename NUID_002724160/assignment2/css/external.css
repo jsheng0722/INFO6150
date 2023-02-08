@@ -1,0 +1,182 @@
+@media only screen and (min-device-width: 350px) and (max-device-width: 365px) {
+    header {background-color: bisque;}
+    .asidenav{
+        background-color: rgb(218, 192, 255);
+    }
+}
+
+@media only screen and (max-device-width: 768px) {
+    header {background-color:cornflowerblue;}
+    .asidenav{
+        font-size: small;
+    }
+}
+* {
+    box-sizing: border-box;
+}
+
+.header-nav {
+    width: auto;
+    height: auto;
+    padding: 8px 16px;
+    background-color: lightblue;
+}
+
+.header-ul {
+    text-align: right;
+    list-style-type: none;
+}
+
+.header-li {
+    display: inline;
+    padding-right: 20px;
+}
+
+.header-li > a{
+    text-decoration: none;
+}
+
+#wrapper {
+    width: 80%;
+    margin: auto;
+
+}
+
+.column {
+    float: left;
+    padding: 10px;
+    height: auto;
+}
+
+.left {
+    width: 70%;
+    background-color: aqua;
+}
+
+.l1, .r1 {
+    width: 33.33%;
+    background-color: orange;
+}
+
+.right {
+    width: 30%;
+    background-color: antiquewhite;
+}
+
+.m1 {
+    width: 33.33%;
+    background-color: orange;
+}
+
+.row::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.asidenav{
+    background-color: pink;
+    border-radius: 15px;
+    float: left;
+    position: fixed;
+    padding: 5px;
+}
+
+.asidenav > nav > ul{
+    display: block;
+    list-style-type: none;
+}
+
+.asidenav > nav > ul > li {
+    margin-top: 20px;
+}
+
+.asidenav > nav > ul > li > a{
+    text-decoration: none;
+}
+
+.diffcontent{
+    overflow: hidden;
+    margin: 10px;
+}
+.article1 {
+    position: relative;
+    left: 20px;
+}
+
+.article1 p {
+    word-break: break-all;
+    width: 90%;
+}
+
+time {
+    position: absolute;
+    font-size: 2px;
+    left: 43px;
+    top: 23px;
+}
+
+#gallery{
+    position: relative;
+}
+
+#gallery ul{
+    width: 150px;
+    list-style-type: none;
+    display: inline;
+}
+
+#gallery li{
+    display: inline;
+    float: left;
+    padding: 10px;
+}
+
+#gallery figure{
+    font-style: italic;
+}
+
+#gallery figcaption{
+    text-align: center;
+}
+#gallery span {
+    display: none;
+}
+
+#gallery figure:hover span{
+    display: block;
+    position: fixed;
+    top: 100px;
+    left: 1020px;
+    text-align: center;
+}
+
+footer .notes{
+	font-size: small;
+	background-color: lightgrey;
+	text-align: center;
+}
+
+.contact1{
+    padding: 20px;
+}
+
+.contact1 > table{
+    border-style: dashed;
+    border-width: 5px;
+    margin: auto;
+    width: 80%;
+    text-align: center;
+}
+
+div.contact1 > table > caption {
+    font-size: xx-large;
+}
+
+.contact1 a[href*="87"]{
+    color: aquamarine;
+}
+
+.contact1 a[href$="2772"]{
+    color: lawngreen;
+}

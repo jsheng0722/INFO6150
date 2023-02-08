@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <title>Feedback</title>
+  <link href="Form.css" type="text/css" rel="stylesheet">
+ </head>
+ <body>
+ <div id="container">
+	 
+	 <main>
+	 <h2>Feeback</h2>
+	 <h3>Love something? Hate something? Let us know!</h3>
+		 Note : Fields marked with an asterisk(*) are mandatory
+		 <br><br>
+		 <form id="myForm" method="post" novalidate>
+			<label>Title*:</label>
+			<input type="radio" name="title" id="miss" value="miss" required="required"/>Miss
+			<input type="radio" name="title" id="mr" value="mr" required="required"/>Mr.
+			<input type="radio" name="title" id="mrs" value="mrs" required="required"/>Mrs.
+			<br><br>
+			<label for="firstName" >First Name*:</label>
+			<input type="text" name="firstName" id="firstName" placeholder="First Name" required="required"/>	
+			<br><br>
+			
+			<div id="error_firstName" style="display: none; color: red;">
+                Invalid First Name, Please enter valid first name
+                <br><br>
+            </div>
+
+
+			<label for="lastName">Last Name*:</label>
+			<input type="text" name="lastName" id="lastName" placeholder="Last Name" required="required"/>
+			<br><br>
+
+			<div id="error_lastName" style="display: none; color: red;">
+                Invalid Last Name, Please enter valid last name
+                <br><br>
+            </div>
+
+
+			<label for="emailId">Email Id*:</label>
+			<input type="text" name="emailId" id="emailId" placeholder="yourname@domain.com" required="required"/>
+			<br><br>
+			
+			<div id="error_emailId" style="display: none; color: red;">
+                Invalid Email address, Please enter valid Email in user@northeasetern.edu
+                <br><br>
+            </div>
+
+
+			<label for="phoneNumber">Phone Number*:</label>
+			<input type="text" name="phoneNumber" id="phoneNumber" placeholder="xxx-xxx-xxxx" required="required"/>
+			<br><br>
+
+			<div id="error_phoneNumber" style="display: none; color: red;">
+                Invalid phone number, Please enter valid phone number in xxx-xxx-xxxx format
+                <br><br>
+            </div>
+
+
+			<label for="streetAddress1">Street Address 1*:</label>
+			<input type="text" name="streetAddress1" id="streetAddress1" placeholder="address" required="required"/>
+			<br><br>
+
+			<div id="error_streetAddress1" style="display: none; color: red;">
+                Not allowing blank, Please enter valid street address.
+                <br><br>
+            </div>
+
+
+			<label for="streetAddress2">Street Address 2:</label>
+			<input type="text" name="streetAddress2" id="streetAddress2" placeholder="address" />
+			<br><br>
+
+			<label for="city">City*:</label>
+			<input type="text" name="city" id="city" placeholder="city" required="required"/>
+			<br><br>
+
+			<div id="error_city" style="display: none; color: red;">
+                Not allowing blank, Please enter valid city.
+                <br><br>
+            </div>
+
+			<label for="state">State*:</label>
+			<input type="text" name="state" id="state" placeholder="state" required="required"/>
+			<br><br>
+
+			<div id="error_state" style="display: none; color: red;">
+                Not allowing blank, Please enter valid state.
+                <br><br>
+            </div>
+			
+            <label for="zipcode">ZipCode*:</label>
+			<input type="text" name="zipcode" id="zipcode" placeholder="xxxxx" required="required"/>
+			<br><br>
+
+			<div id="error_zipcode" style="display: none; color: red;">
+                Invalid zip code, Please enter valid zipcode in xxxxx format
+                <br><br>
+            </div>
+             
+            <label for="referral">How did you hear*:</label>
+			<input type='checkbox' name="source" value="facebook"/> Facebook
+            <input type='checkbox' name="source" value="google"/> Google
+            <input type='checkbox' name="source" value="yelp"/> Yelp 
+			<br><br> 
+
+			<label for="listbox">Drinks*:</label>
+			<select name="listbox" id="listbox" onchange="listboxSelect(this);">
+				<option value="0">--Please choose a drink--</option>
+				<option value="Hot Black Tea">Hot Black Tea</option>
+				<option value="Cold Coffee">Cold Coffee</option>
+				<option value="Lemon Iced Tea">Lemon Iced Tea</option>
+				<option value="Latte">Latte</option>
+			</select>
+			<div id="error_drink" style="display: none; color: red;">
+                Please select one of drinks.
+                <br><br>
+            </div>
+			<div id="listbox_choice" style="display: none;">
+            </div>
+			<br><br><br>
+             
+			<label for="comments">Comments*:</label>
+			<textarea name="text" id="comments" placeholder="Your comments" rows="5" cols="25" required="required"></textarea>
+			<br><br>
+
+			<div id="error_comments" style="display: none; color: red;">
+                Not allowing blank, Please enter valid comments.
+                <br><br>
+            </div>
+
+			<input type="Submit" value="Submit My Form">
+			<input type="Reset" value="Reset My Form">
+			<br><br>
+		 </form>
+	 </main>
+ </div>
+ <br>
+ <table id="myTable">
+	<tr>
+		<th>Title</th>
+		<th>First Name</th>
+		<th>Last Name</th>
+		<th>Email ID</th>
+		<th>Phone</th>
+		<th>streetAddress1</th>
+		<th>streetAddress2</th>
+		<th>City</th>
+		<th>State</th>
+		<th>Zip Code</th>
+		<th>Referral</th>
+		<th>Drink</th>
+		<th>Size</th>
+		<th>Additional Customisations</th>
+		<th>Comments</th>
+	</tr>
+ </table>
+ <script type="text/javascript" src="Form.js"></script>
+ </body>
+</html>
