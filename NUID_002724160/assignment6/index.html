@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> index </title>
+		<link rel="stylesheet" type="text/css" href="css/index.css">
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+        <script>
+            var params = new URLSearchParams(window.location.search);
+            var userName = params.get("userName");
+    
+            $(document).ready(function() {
+                document.getElementById('name').innerHTML='Hello ' + userName;
+                const calculate = (op)=>{
+                    var num1 = parseFloat($('#firstNum').val());
+                    var num2 = parseFloat($('#secondNum').val());
+                    if (isNaN(num1) || isNaN(num2)){
+                        $('#error_Num').show();
+                    }else{
+                        $('#error_Num').hide();
+                    }
+                    var result = $('#result');
+                    switch (op) {
+                        case 'add':
+                        result = num1 + num2;
+                        break;
+                        case 'subtract':
+                        result = num1 - num2;
+                        break;
+                        case 'multiply':
+                        result = num1 * num2;
+                        break;
+                        case 'divide':
+                        result = num1 / num2;
+                        break;
+                    }
+
+                    $('#result').val(result);
+                }
+                $('#add').click(() => calculate('add'));
+                $('#subtract').click(() => calculate('subtract'));
+                $('#multiply').click(() => calculate('multiply'));
+                $('#divide').click(() => calculate('divide'));
+                var addBtn = $('#add');
+            });
+        </script>
+    </head>
+    <body>
+        <div id="container">
+            <p id="name">???</p>
+            <label for="firstNum">First Number:</label>
+            <input type="text" id="firstNum">
+            <br><br>
+            <label for="secondNum">SecondNumber:</label>
+            <input type="text" id="secondNum">
+            <div id="error_Num" style="display: none; color: red;"><br><br>should allow only numbers</div><br><br>
+
+            <input type="button" id="add" value="addV" />
+            <input type="button" id="subtract" value="subtractV" />
+            <input type="button" id="multiply" value="multiplyV" />
+            <input type="button" id="divide" value="divideV" />
+            <br><br>
+            <label for="result">Result:</label>
+            <input type="text" id="result" readonly />
+        </div>
+    </body>
+</html>
