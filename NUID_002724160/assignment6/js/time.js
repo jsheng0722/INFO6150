@@ -13,15 +13,19 @@ class Time {
         this.updateDisplay();
     }
 
-    start() {
-    if (!this.isRunning) {
-        this.isRunning = true;
-        this.timer = setInterval(() => {
-        this.time += 1;
-        this.updateDisplay();
-        }, 1000);
+    async start() {
+        if (!this.isRunning) {
+            this.isRunning = true;
+            while (this.isRunning) {
+                await new Promise((resolve) => {
+                    this.timer = setTimeout(resolve, 1000);
+                });;
+                this.time += 1;
+                this.updateDisplay();
+            }
+        }
     }
-    }
+
 
     stop() {
         if(this.isRunning){
