@@ -1,0 +1,36 @@
+$table-color: #d4d6d8;
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+caption {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+th {
+  color: #fff;
+  font-weight: bold;
+  text-align: left;
+  padding: 12px;
+}
+
+td {
+  padding: 12px;
+  border: 1px solid #ccc;
+}
+
+tr {
+  &:nth-child(even) {
+    background-color: $table-color;
+  }
+
+  &:hover {
+    background-color: darken($table-color, 5%);
+  }
+}

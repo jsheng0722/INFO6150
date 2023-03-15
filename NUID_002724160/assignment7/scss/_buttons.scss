@@ -1,0 +1,10 @@
+%btn {
+    transition: transform 0.2s;
+    &:hover{
+        transform: scale(1.3);
+    }
+}
+
+#searchpic{
+    @extend %btn;
+}

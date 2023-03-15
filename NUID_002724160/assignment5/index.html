@@ -7,16 +7,15 @@
         <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-        <script src="js/HW5.js" rel="text/JavaScript"></script>
-        
+
+    
         <link rel="icon" href="favicon.ico" sizes="180x180">
+        <script src="js/login.js" rel="text/JavaScript">
+        </script>
         <!-- Template Main css file -->
-        <link href="css/HW5.css" rel="text/stylesheet">
 
         <title>Index</title>
-    
-        <script>
-        </script>
+        
         <style>
             .modal-backdrop {
                 z-index: 1029;
@@ -28,7 +27,7 @@
         <header class="blog-header lh-1 py-3">
             <div class="nav-scroller py-1 mb-2">
                 <!-- navbar -->
-                <nav id="navbar-id" class="navbar navbar-dark bg-dark fixed-top">
+                <nav id="navbar-id" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
                     <div class="container-fluid">
                         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                             <span class="navbar-toggler-icon"></span>
@@ -66,10 +65,16 @@
                             </div>
                         </div>
                         <div id="loginfo">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a data-bs-toggle="modal" data-bs-target="#register" href=""><span class=""></span> register</a></li>
-                                <li><a data-bs-toggle="modal" data-bs-target="#login" href=""><span class=""></span> login</a></li>
-                            </ul>
+                            <div class="navbar-nav">
+                                <ul class="navbar-nav list-inline ms-auto">
+                                    <li class="nav-item m-1 px-1">
+                                        <button class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#register">register</button>
+                                    </li>
+                                    <li class="nav-item m-1 px-1">
+                                        <button class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#login">login</button>
+                                    </li>
+                                </ul>
+                            </div>
                             <!-- register window -->
                             <div id="register" class="modal fade" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
                                 <div class="modal-dialog modal-dialog-centered">
@@ -83,22 +88,30 @@
                                             <h1 class="text-center">register</h1>
                                         </div>
                                         <div class="modal-body">
-                                            <form class="form-group" action="">
+                                            <form id="registerFrom" method="post" class="form-group" action="" onsubmit="submitForm();return false;" novalidate>
                                                 <div class="form-group">
-                                                    <label for="">username</label>
-                                                    <input class="form-control" type="text" placeholder="" required>
+                                                    <label for="userName">User name<span style="color: red;">*</span>:</label>
+                                                    <input id="userName" class="form-control" type="text" placeholder="" required onblur="checkUserName()">
+                                                    <div id="error_userName" style="display: inline;"></div>
+					                                <br><br>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="">password</label>
-                                                    <input class="form-control" type="password" placeholder="" required>
+                                                    <label for="password">Password<span style="color: red;">*</span>:</label>
+                                                    <input id="password" class="form-control" type="password" placeholder="" required onblur="checkPassword()">
+                                                    <div id="error_password" style="display: inline;"></div>
+                                                    <br><br>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="">reenter password</label>
-                                                    <input class="form-control" type="password" placeholder="" required>
+                                                    <label for="confrimPassword">Confirm password<span style="color: red;">*</span>:</label>
+                                                    <input id="confrimPassword" class="form-control" type="password" placeholder="" required onblur="doubleCheckPassword()">
+                                                    <div id="error_confrimPassword" style="display: inline;"></div>
+                                                    <br><br>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="">email</label>
-                                                    <input class="form-control" type="email" placeholder="" required>
+                                                    <label for="emailId">Email<span style="color: red;">*</span>:</label>
+                                                    <input id="emailId" class="form-control" type="email" placeholder="" required onblur="checkEmail()">
+                                                    <div id="error_emailId" style="display: inline;"></div>
+					                                <br><br>
                                                 </div>
                                                 <div class="text-right">
                                                     <button class="btn btn-primary" type="submit">submit</button>
@@ -123,13 +136,13 @@
                                             <h1 class="text-center">Login</h1>
                                         </div>
                                         <div class="modal-body">
-                                            <form class="form-group" action="">
+                                            <form id="loginForm" method="post" action="" class="form-group">
                                                 <div class="form-group">
-                                                    <label for="">User Name</label>
+                                                    <label for="">User name:</label>
                                                     <input class="form-control" type="text" placeholder="">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="">Password</label>
+                                                    <label for="">Password:</label>
                                                     <input class="form-control" type="password" placeholder="">
                                                 </div>
                                                 <div class="text-right">

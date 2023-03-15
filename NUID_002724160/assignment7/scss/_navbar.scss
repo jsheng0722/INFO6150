@@ -1,0 +1,62 @@
+@function navbar-color($state) {
+    @if $state == 'default' {
+      @return pink;
+    } @else if $state == 'visited' {
+      @return grey;
+    } @else if $state == 'hover' {
+      @return #0056b3;
+    }
+}
+
+nav {
+	grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    background-color: navbar-color('default');
+    background-image: linear-gradient(to right, lightyellow, navbar-color('default'), orange);
+    border-bottom: 1px solid var(--secondary-color);
+    box-shadow: var(--box-shadow);
+    border-radius: 0px 0px 5px 5px;
+    
+    ul{
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+
+        li{
+            margin: 0 10px;
+            display: flex;
+            align-items: center;
+            border: dashed;
+            
+            :hover{
+                border: dashed;
+            }
+
+            img {
+                height: 25px;
+            }
+
+            a{
+                margin-left: 5px;
+                font-size: 20px;
+                text-decoration: none;
+                color: #000000;
+
+                &:link {
+                    color: #000000;
+                }
+
+                &:visited {
+                    color: navbar-color('visited');
+                }
+
+                &:hover {
+                    color: navbar-color('hover');
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
