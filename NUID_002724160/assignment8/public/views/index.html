@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Assignment8</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  </head>
+
+  <body>
+    <div>
+      <form>
+        <label for="userName">Full Name:</label>
+        <input type="text" id="userName" name="userName" required>
+      
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+      
+        <button type="submit" id="buttonClick" value="Submit">Create User</button>
+      </form>
+      <h1>Users are displayed below</h1>
+      <h4 id="text"></h4>
+    </div>
+    <script type="text/javascript">
+      $(function () {
+        populateText();
+        $("#buttonClick").click(function (e) {
+          e.preventDefault();
+
+          var userName = document.getElementById("userName").value;
+          var email = document.getElementById("email").value;
+          var password = document.getElementById("password").value;
+          var data = {
+            userName: userName,
+            email: email,
+            password: password
+          };
+          data.message = "userName: " + userName + "; email: " + email + "; password: " + password;
+
+          $.ajax({
+            type: "POST",
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            url: "http://localhost:8080/user/create",
+            success: function (result) {
+              console.log("success");
+              $.get("http://localhost:8080/user/getAll", function (data, status) {
+                $("h4").append(data[data.length - 1].message + "<br/>");
+                $("#userName").val("");
+                $("#email").val("");
+                $("#password").val("");
+              });
+            }
+          });
+        });
+      });
+
+      function populateText() {
+        $.get("http://localhost:8080/user/geteAll", function (data, status) {
+          $.each(data, function (i, item) {
+            $("h4").append(data[i].message + "<br/>");
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
