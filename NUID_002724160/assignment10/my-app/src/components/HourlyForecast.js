@@ -12,7 +12,7 @@ function HourlyForecast() {
     useEffect(() => {
         const fetchData = async () => {
         try {
-            const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid=42272e863284f1044e114d52c2f7a149`);
+            const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?zip=02115&appid=4c79fd413b3609ad5d1337f276d6aafc&units=imperial`);
             const data = await response.json();
             setWeatherData(data);
         } catch (error) {
