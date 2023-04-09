@@ -1,0 +1,94 @@
+h2{
+    padding-bottom: 15px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.container{
+    width: 80%;
+    height: 80%;
+}
+#contact {
+    text-align: center;
+    padding: 60px 0;
+}
+
+.section-header h2 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.section-header p {
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 40px;
+    color: #6c757d;
+}
+
+.contact-info {
+    margin-bottom: 50px;
+}
+
+.contact-info h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.contact-info i {
+    font-size: 32px;
+    color: #f44336;
+    margin-right: 15px;
+}
+
+.contact-info p {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.form {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
+.form-control {
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.form-control:focus {
+    border-color: #f44336;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+textarea.form-control {
+    height: 150px;
+}
+
+button[type="submit"] {
+    background-color: #f44336;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px 30px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #f22f06;
+    cursor: pointer;
+}
