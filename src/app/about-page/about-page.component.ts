@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-about-page',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AboutPageComponent {
   imagePath = 'assets/images';
+  constructor(public authService:AuthService){}
+
+  ngOnInit() {
+    this.authService.setReturnUrl('/about');
+  }
 }

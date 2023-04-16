@@ -1,0 +1,44 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+}
+
+.card img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+}
+
+.card-title {
+    position: absolute;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    font-size: 20px;
+    bottom: -10px;
+    left: -2px;
+    max-width: 100%;
+    margin: 0 16px 16px 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.card-title.full {
+    font-size: 12px;
+    white-space: normal;
+}
+  
+.card-body{
+    position: absolute;
+    bottom: -15px;
+    right: 0;
+    color: grey;
+    overflow: hidden;
+}

@@ -1,0 +1,7 @@
+<mat-dialog-content class="upload-task-dialog-content">
+    <p>Are you sure you want to upload the task "{{ task.title }}"?</p>
+    <p>
+      <button mat-button color="warn" (click)="uploadTask()">Yes</button>
+      <button mat-button (click)="cancel()">No</button>
+    </p>
+</mat-dialog-content>

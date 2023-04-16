@@ -1,69 +1,69 @@
-<main>
-    <div class="container-fluid" style="background-image: url({{imagePath}}/4.jpg); background-size: cover; height: 700px; background-attachment: fixed;">  
-        <div class="container col-xxl-8 offset-xxl-3 px-4 py-5">
-            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-                <div class="col-lg-6">
-                    <br><br>
-                    <h1 class="display-5 fw-bold lh-1 mb-3" style="color: white;">
-                    Find the <span style="font-style: italic; font-family: 'Times New Roman', sans-serif; color: white;"> perfect freelance</span> services for your business
-                    </h1>
-                    <p class="lead text-center" style="font-size: 1.5em; font-weight: bold; font-family: 'Georgia';color: white;">
+<div class="container-fluid main-bg">
+    <div class="container content-container col-xxl-8 offset-xxl-3 px-4 py-5">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+            <div class="col-lg-6">
+                <br><br>
+                <h1 class="main-heading">
+                    Find the <span class="main-heading-highlight"> perfect freelance</span> services for your business
+                </h1>
+                <p class="lead text-center main-subheading">
                     Post/Find a task for free and connect today
-                    </p>            
-                    <form class="d-flex mt-3" role="search">
-                        <input class="form-control me-2" type="search" placeholder='Try "Find a Website design"' aria-label="Search">
-                        <button class="btn btn-primary" type="submit">Search</button>
-                    </form>
-                    <br>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                        <button type="button" class="btn btn-success btn-lg px-4 me-md-2">Join now</button>
-                        <a href="about.html">
-                            <button type="button" class="btn btn-info btn-lg px-4">About us</button>
-                        </a>
+                </p>
+                <form class="d-flex mt-3" role="search" (ngSubmit)="searchTasks(search.value)">
+                    <input class="form-control me-2" type="search" #search placeholder='Try "Find a Website design"' aria-label="Search">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </form>
+                <br>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <button type="button" class="btn btn-success btn-lg px-4 me-md-2" routerLink="/register">Join now</button>
+                    <a routerLink="/about">
+                        <button type="button" class="btn btn-info btn-lg px-4">About us</button>
+                    </a>
                     </div>
-                </div>
             </div>
         </div>
-        <!-- <br><br><br> -->
     </div>
-    <hr>
-    <div id="carouselExampleDark" class="carousel carousel-dark slide p-5">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="10000">
-                <img src="{{imagePath}}/p1.jpg" class="d-block w-100" alt="fj1">
-                <div class="carousel-caption d-none d-md-block text-light bg-secondary bg-opacity-75 bg-gradient">
-                    <h5>1</h5>
-                    <p>This is the first landscape.</p>
-                </div>
-            </div>
-            <div class="carousel-item" data-bs-interval="2000">
-                <img src="{{imagePath}}/p2.jpg" class="d-block w-100" alt="fj2">
-                <div class="carousel-caption d-none d-md-block text-light bg-secondary bg-opacity-75 bg-gradient">
-                    <h5>2</h5>
-                    <p>This is the second landscape.</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="{{imagePath}}/p3.jpg" class="d-block w-100" alt="fj3">
-                <div class="carousel-caption d-none d-md-block text-light bg-secondary bg-opacity-75 bg-gradient">
-                    <h5>3</h5>
-                    <p>This is the third landscape.</p>
-                </div>
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+</div>
+<hr class="solid">
+<div class="card-container">
+    <app-card-list [tasks]="searchResults || tasks" [searchKw]="searchKw"></app-card-list>
+</div>
+<!-- <div id="carouselExampleDark" class="carousel carousel-dark slide p-5">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
-    <hr>
-</main>
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="10000">
+            <img src="{{imagePath}}/p1.jpg" class="d-block w-100" alt="fj1">
+            <div class="carousel-caption d-none d-md-block text-light bg-secondary bg-opacity-75 bg-gradient">
+                <h5>1</h5>
+                <p>This is the first landscape.</p>
+            </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="2000">
+            <img src="{{imagePath}}/p2.jpg" class="d-block w-100" alt="fj2">
+            <div class="carousel-caption d-none d-md-block text-light bg-secondary bg-opacity-75 bg-gradient">
+                <h5>2</h5>
+                <p>This is the second landscape.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{{imagePath}}/p3.jpg" class="d-block w-100" alt="fj3">
+            <div class="carousel-caption d-none d-md-block text-light bg-secondary bg-opacity-75 bg-gradient">
+                <h5>3</h5>
+                <p>This is the third landscape.</p>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div> -->
+<hr>

@@ -1,0 +1,35 @@
+.upload-task-dialog-content {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100px;
+    width: auto;
+    z-index: 10;
+}
+
+.upload-task-dialog-content p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    text-align: center;
+    position: relative;
+}
+
+.upload-task-dialog-content p:last-child {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.upload-task-dialog-content button {
+    font-size: 14px;
+    padding: 8px 16px;
+    margin-right: 16px;
+}
+

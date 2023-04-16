@@ -1,0 +1,39 @@
+<div class="container">
+    <h1>Recent new tasks</h1>
+    <p>Total tasks: {{ getTasksCount() }}</p>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="task-list">
+                <div class="task" *ngFor="let task of tasks | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }" [routerLink]="['/tasks', task._id]">
+                    <div class="task-header">
+                        <h3>{{ task.title }}</h3>
+                    </div>
+                    <div class="task-body">
+                        <p>{{task.publisher}}</p>
+                    </div>
+                    <div class="task-footer">
+                        <span>{{ task.createdate | date }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="filter">
+                <h4>Filter Tasks</h4>
+                <label>
+                <input type="checkbox" [(ngModel)]="dateFilter">
+                Show recent tasks
+                </label>
+                <div class="form-group" *ngIf="dateFilter">
+                <label for="dateFilterInput">Filter by date:</label>
+                <input type="date" class="form-control" id="dateFilterInput" [(ngModel)]="searchDate">
+                <button class="btn btn-primary mt-2" (click)="filterTasksByDate()">Filter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="pagination-wrapper">
+        <pagination-controls class="pagination" (pageChange)="currentPage = $event"></pagination-controls>
+    </div>
+</div>

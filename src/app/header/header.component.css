@@ -11,3 +11,22 @@
     padding-top: 15px;
     margin-left: 10px;
 }
+
+.offcanvas.show .nav-divider {
+    border-top: 1px solid rgba(255, 255, 255, 1);
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.offcanvas.show{
+    width: 300px;
+}
+
+.offcanvas.show .offcanvas-body {
+    margin-left: 0px;
+    text-align: right;
+}
+
+.offcanvas.show .nav-link{
+    font-size: 20px;
+}

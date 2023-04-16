@@ -1,0 +1,95 @@
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #333;
+    background-color: #f8f8f8;
+}
+
+.container-fluid {
+    margin-top: 50px;
+    width: 80%;
+}
+
+.row {
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+}
+
+p.text-muted {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+p strong {
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+.col-md-4 {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.col-md-4 h4 {
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.col-md-4 p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+
+.text-muted {
+    font-size: 20px;
+    margin-top: 5px;
+    margin-left: 60px;
+}
+
+.des-section > h2{
+    font-size: 25px;
+}
+
+.detail-section > h2 {
+    font-size: 25px;
+    margin-top: 10px;
+}
+
+.ci-section > p:nth-child(2),
+.ci-section > p:nth-child(3) {  
+  text-align: center;
+}
+
+.toright {
+    display: block;
+    margin: 0 50px 0 auto;
+}
+
+a {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+i {
+    font-size: 24px;
+}

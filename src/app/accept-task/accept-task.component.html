@@ -1,0 +1,7 @@
+<mat-dialog-content class="accept-task-dialog-content">
+    <p>Are you sure you want to accept the task "{{ task.title }}"?</p>
+    <p>
+      <button mat-button color="warn" (click)="acceptTask()">Yes</button>
+      <button mat-button (click)="Oncancel()">No</button>
+    </p>
+</mat-dialog-content>

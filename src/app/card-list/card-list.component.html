@@ -1,0 +1,9 @@
+<h1>Tasks {{searchKw ? 'for "' + searchKw + '"' : ''}}</h1>
+<div class="card-list">
+    <app-card *ngFor="let task of tasks" 
+                [id]="task._id" 
+                [title]="task.title" 
+                [publisher]="task.publisher" 
+                [date]="task.modifydate">
+    </app-card>
+</div>

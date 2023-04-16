@@ -1,0 +1,18 @@
+<app-header></app-header>
+<div class="header-container d-flex flex-row-reverse align-items-center">
+    <div class="col-md-8">
+        <div class="jumbotron">
+            <h1 class="display-4">Task board</h1>
+            <p class="lead">To get started, create a task and let others know about your needs.</p>
+            <hr class="my-4">
+            <p></p>
+            <a class="btn btn-primary btn-lg mr-3" role="button" (click)="navigateToTargetPage()">Create/Upload a task</a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <img class="img-fluid" src="{{imagePath}}/1.jpg" alt="Find your job">
+    </div>
+</div>
+
+<app-task-global-list></app-task-global-list>
+<app-footer></app-footer>

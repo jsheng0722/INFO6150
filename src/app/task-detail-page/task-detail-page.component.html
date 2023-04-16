@@ -1,0 +1,52 @@
+<app-header></app-header>
+<div class="container-fluid">
+    <a (click)="goBack()"><i class="bi bi-arrow-left">&lt;Back</i></a>
+    <div class="row">
+        <div class="col-md-8">
+            <h1 class="text-center mb-5">{{ task?.title }}</h1>
+    
+            <section class="des-section">
+            <h2><strong>Description</strong></h2>
+            <p class="text-muted">{{ task?.description }}</p>
+            </section>
+    
+            <section class="other-section">
+            <h2><strong>Type</strong></h2>
+                <p class="text-muted">{{ task?.type.join(', ') }}</p>
+            </section>
+    
+            <section class="other-section">
+                <h2><strong>Completed</strong></h2>
+                <p class="text-muted">{{ task?.completed }}</p>
+            </section>
+
+            <section class="other-section">
+                <h2><strong>Publisher</strong></h2>
+                <p class="text-muted">{{ task?.publisher }}</p>
+            </section>
+
+            <section class="other-section">
+            <h2><strong>Constraints</strong></h2>
+                <p class="text-muted">{{ task?.constraints }}</p>
+            </section>
+
+            <section class="other-section">
+                <h2><strong>Reward</strong></h2>
+                <p class="text-muted">{{ task?.reward }}</p>
+            </section>
+
+            <button class="btn btn-success toright" (click)="openAcceptDialog(task)"><i class="bi bi-check"></i> Accept Task</button>
+        </div>
+
+        <div class="col-md-4">
+            <section class="ci-section">
+                <h2><strong>Contact Information</strong></h2>
+                <p>Phone: 123-456-7890</p>
+                <p>Email: example@example.com</p>
+                <p><strong>Assigned to:</strong> {{ task?.assignee }}</p>
+                <p><strong>Date:</strong> {{ task?.modifydate | date }}</p>
+            </section>
+        </div>
+        </div>
+    </div>
+<app-footer></app-footer>

@@ -1,48 +1,46 @@
-import { Component, ViewContainerRef } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { LoginFormComponent } from './login-form/login-form.component';
-import { RegisterFormComponent } from './register-form/register-form.component';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { AuthService } from '../auth.service';
+import { BehaviorSubject, Subscription } from 'rxjs';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy {
   imagePath = 'assets/images';
-  isLoginFormActive = true;
-  isRegisterFormActive = true;
-  viewContainerRef: ViewContainerRef | undefined;
-  constructor(public dialog: MatDialog) {}
+  username: string | null = null;
+  private usernameSub: Subscription = new Subscription();
 
-  openLoginForm() {
-    this.isRegisterFormActive = false;
-    this.isLoginFormActive = true;
-    const dialogRef = this.dialog.open(LoginFormComponent, {
-      width: '500px',
-      disableClose: true,
-      autoFocus: true,
-      hasBackdrop: true,
-      viewContainerRef: this.viewContainerRef
-    });
+  constructor(private authService: AuthService) {}
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+  private closeOffcanvasSubject = new BehaviorSubject<boolean>(false);
+  closeOffcanvas$ = this.closeOffcanvasSubject.asObservable();
+
+  closeOffcanvas() {
+    this.closeOffcanvasSubject.next(true);
+  }
+  
+  ngOnInit(): void {
+    this.usernameSub = this.authService.usernameSubject.subscribe(username => {
+      this.username = username;
+      console.log(username)
     });
+    const isLoggedIn = this.authService.getisLoggedIn();
+    if (isLoggedIn) {
+      const username = localStorage.getItem('username');
+      this.username = username ? username : null;
+    }
   }
 
-  openRegisterForm() {
-    this.isLoginFormActive = false;
-    this.isRegisterFormActive = true;
-    const dialogRef = this.dialog.open(RegisterFormComponent, {
-      width: '500px',
-      disableClose: true,
-      autoFocus: true,
-      hasBackdrop: true,
-      viewContainerRef: this.viewContainerRef
-    });
+  // Unsubscribe to usernameSubject to prevent memory leaks
+  ngOnDestroy(): void {
+    this.usernameSub.unsubscribe();
+  }
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
+  // Add this method to HeaderComponent class
+  logout(): void {
+    this.authService.logout();
+    this.username = null;
   }
 }
