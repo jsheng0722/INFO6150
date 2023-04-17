@@ -1,0 +1,34 @@
+<main>
+    <div class="container-fluid main-bg">
+        <div class="container content-container col-xxl-8 offset-xxl-3 px-4 py-5">
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                <div class="col-lg-6">
+                    <h1 class="main-heading">
+                        Find the <span class="main-heading-highlight"> perfect freelance</span> services for your business
+                    </h1>
+                    <p class="lead text-center main-subheading">
+                        Post/Find a task for free and connect today
+                    </p>
+                    <form class="d-flex mt-3" role="search" (ngSubmit)="searchTasks(search.value)">
+                        <input class="form-control me-2" type="search" #search placeholder='Try "Find a Website design"' aria-label="Search">
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </form>
+                    <br>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                        <button type="button" class="btn btn-success btn-lg px-4 me-md-2" routerLink="/register">Join now</button>
+                        <a routerLink="/about">
+                          <button type="button" class="btn btn-info btn-lg px-4">About us</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="solid">
+    <div class="container">
+        <div >
+            <app-card-list [tasks]="searchResults || tasks" [searchKw]="searchKw"></app-card-list>
+        </div>
+    </div>
+    <hr>
+</main>
