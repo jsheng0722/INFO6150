@@ -3,8 +3,8 @@
     flex-direction: column;
     justify-content: flex-end;
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 350px;
+    height: 350px;
     margin: 20px;
 }
 
@@ -20,7 +20,7 @@
 .card-title {
     position: absolute;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-    font-size: 20px;
+    font-size: 24px;
     bottom: -10px;
     left: -2px;
     max-width: 100%;
@@ -31,7 +31,7 @@
 }
 
 .card-title.full {
-    font-size: 12px;
+    font-size: 20px;
     white-space: normal;
 }
   

@@ -1,4 +1,4 @@
-import { Component, NgModule, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../task.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditTaskComponent } from './edit-task/edit-task.component';
@@ -7,6 +7,7 @@ import { DeleteTaskComponent } from './delete-task/delete-task.component';
 import { UploadTaskComponent } from './upload-task/upload-task.component';
 import { AuthService } from '../auth.service';
 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-task-list',
@@ -21,19 +22,39 @@ export class TaskListComponent implements OnInit {
   itemsPerPage = 8;
   completedTasks: any[] = [];
   uncompletedTasks: any[] = [];
-  pub: string = '';
+  pub: string = 'all';
   uncompletedTasksCopy: any[] = [];
   showOverlay:boolean = false;
-  
+  currentTab: string = 'completed';
+  showUncompletedSubmenu: boolean = false;
 
   constructor(
     private dialog: MatDialog,
     private taskService: TaskService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.getTasks();
+  }
+
+  changeTab(tabName: string) {
+    if (tabName === 'completed') {
+      this.showUncompletedSubmenu = false;
+    } else if (tabName === 'uncompleted') {
+      this.showUncompletedSubmenu = true;
+    }
+    this.currentTab = tabName;
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+    });
+    const clickedLink = document.querySelector(`.nav-link[data-tab="${tabName}"]`);
+    clickedLink?.classList.add('active');
+  }
+  goBack() {
+    this.router.navigate(['/globalTask']);
   }
 
   getTasks() {
@@ -43,6 +64,7 @@ export class TaskListComponent implements OnInit {
         this.completedTasks = this.tasks.filter(task => task.completed);
         this.uncompletedTasks = this.tasks.filter(task => !task.completed);
         this.uncompletedTasksCopy = this.uncompletedTasks.slice();
+        this.toggleTaskList(this.pub);
       },
       error: (error) => {
         console.log('Error retrieving tasks:', error);

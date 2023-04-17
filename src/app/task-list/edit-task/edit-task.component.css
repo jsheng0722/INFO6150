@@ -1,5 +1,5 @@
 .container {
-    width: 80%;
+    width: 75%;
     margin: auto;
 }
 
@@ -18,10 +18,14 @@ h2 {
     font-weight: bold;
 }
 
+.required {
+    color: red;
+}
+
 .form-group input,
 .form-group textarea {
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #e1e1e1;
     padding: 10px;
     width: 100%;
     font-size: 1rem;
@@ -30,45 +34,51 @@ h2 {
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    box-shadow: 0 0 5px #2196f3;
-    border-color: #2196f3;
+    box-shadow: 0 0 5px #9a9a9a;
+    border-color: #9a9a9a;
 }
 
 .form-group.form-check input[type="checkbox"] {
     margin-right: 5px;
 }
 
-.btn-primary {
+.btn-primary, .btn-cancel {
     margin-top: 10px;
-    background-color: #2196f3;
-    border-color: #2196f3;
-    color: #fff;
     font-size: 1.2rem;
     padding: 10px 20px;
     border-radius: 5px;
 }
 
+.btn-primary {
+    background-color: #ea4c89;
+    border-color: #ea4c89;
+    color: #fff;
+}
+
 .btn-primary:hover {
-    background-color: #0c7cd5;
-    border-color: #0c7cd5;
+    background-color: #d83d74;
+    border-color: #d83d74;
 }
   
+.btn-cancel {
+    background-color: #ccc;
+    border-color: #ccc;
+    color: #333;
+}
+  
+.btn-cancel:hover {
+    background-color: #b3b3b3;
+    border-color: #b3b3b3;
+}
+
 .close-button {
     position: absolute;
     top: 10px;
     right: 10px;
-}
-  
-.form-check-label-wrapper {
-    display: flex;
-    align-items: center;
+    color: #999;
 }
 
-.form-check-input {
-    margin: 10px;
-}
-
-.edit-task-dialog-content {
+.add-task-dialog-content {
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
@@ -80,9 +90,18 @@ h2 {
     left: 50%;
     transform: translate(-50%, -50%);
     height: auto;
-    width: 900px;
+    width: 600px;
     max-height: 80vh;
     max-width: 80vw;
     overflow-y: auto;
     z-index: 10;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkbox-container {
+    padding: 8px;
 }

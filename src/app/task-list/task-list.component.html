@@ -1,21 +1,38 @@
-<div class="container">
+<div class="container task-manager">
     <div class="overlay" *ngIf="showOverlay"></div>
 
     <h2>Personal Task Manager</h2>
+    <a (click)="goBack()" class="back-btn">&#8592; Back</a>
     <div class="row">
-        <div class="col-md-11">
-            <mat-tab-group selectedIndex="1">
-                <mat-tab label="Completed Task">
-                    
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th style="width: 120px; height: 50px;">Title</th>
-                            <th style="width: 210px; height: 50px;">Completed</th>
-                            <th colspan="2"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
+        <div class="sidebar">
+            <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" (click)="changeTab('completed')"  data-tab="completed">Completed Task</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="changeTab('uncompleted')" data-tab="uncompleted">Uncompleted Task</a>
+                <ul class="sub-nav" [ngClass]="{'sub-nav-active': showUncompletedSubmenu}">
+                    <li><a [ngClass]="{'active': pub === 'me'}" (click)="toggleTaskList('me')">Me</a></li>
+                    <li><a [ngClass]="{'active': pub === 'other'}" (click)="toggleTaskList('other')">Other</a></li>
+                    <li><a [ngClass]="{'active': pub === 'all'}" (click)="toggleTaskList('all')">All</a></li>
+                </ul>
+            </li>
+            </ul>
+            
+            <button mat-raised-button color="primary" (click)="handleButtonClick('add')" class="btn btn-primary add-btn">Add More</button>
+        </div>
+        <div class="content">
+            <div class="task-table" *ngIf="currentTab === 'completed'">
+                <div class="table-wrapper">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th style="width: 120px; height: 50px;">Title</th>
+                                <th style="width: 210px; height: 50px;">Completed</th>
+                                <th colspan="2"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
                             <ng-container *ngFor="let task of completedTasks | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
                                 <tr>
                                     <td>{{ task.title }}</td>
@@ -39,70 +56,72 @@
                                         <p><strong>Modified: </strong> {{ task.modifydate | date }}</p>
                                         <p><strong>Publisher: </strong> {{ task.publisher }}</p>
                                         <!-- <p><strong>Assignee: </strong> {{ task.assignee }}</p> -->
-                                        <p><strong>Type: </strong> {{ task.type.join(', ') }}</p>
-                                        <p><strong>Constraints: </strong> {{ task.constraints }}</p>
+                            <p><strong>Type: </strong> {{ task.type }}</p>
+                            <p><strong>skills: </strong> {{ task.skills }}</p>
                                         <p><strong>Reward: </strong> {{ task.reward }}</p>
                                     </td>
                                 </tr>
                             </ng-container>
                         </tbody>
                     </table>
-                </mat-tab>
-                <mat-tab label="Uncompleted Task">
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th style="width: 120px; height: 50px;">Title</th>
-                            <th style="width: 210px; height: 50px;">Completed</th>
-                            <th colspan="2">
-                                <mat-button-toggle-group class="my-toggle-group" (change)="toggleTaskList($event.value)" aria-label="Toggle Button">
-                                    <mat-button-toggle class="my-toggle" value="me">Me</mat-button-toggle>
-                                    <mat-button-toggle class="my-toggle" value="other">Other</mat-button-toggle>
-                                    <mat-button-toggle class="my-toggle" value="all">All</mat-button-toggle>
-                                </mat-button-toggle-group>
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <ng-container *ngFor="let task of uncompletedTasks | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
-                                <tr>
-                                    <td>{{ task.title }}</td>
-                                    <td>
-                                        <mat-slide-toggle [checked]="task.completed" (change)="toggleCompletedStatus(task)">
-                                            {{ task.completed ? 'Yes' : 'No' }}
-                                        </mat-slide-toggle>
-                                    </td>
-                                    <td>
-                                        <button mat-button (click)="task.showDetails = !task.showDetails">Details</button>
-                                    </td>
-                                    <td class="text-right">
-                                        <button class="btn btn-danger m-1" (click)="handleButtonClick('delete',task)">Delete</button>
-                                        <button class="btn btn-danger m-1" (click)="handleButtonClick('edit',task)">Edit</button>
-                                        <button class="btn btn-danger m-1" (click)="handleButtonClick('upload',task)">Upload</button>
-                                    </td>
-                                </tr>
-                                <tr *ngIf="task.showDetails">
-                                    <td colspan="5">
-                                        <p><strong>Description: </strong> {{ task.description }}</p>
-                                        <p><strong>Created: </strong> {{ task.createdate | date }}</p>
-                                        <p><strong>Modified: </strong> {{ task.modifydate | date }}</p>
-                                        <p><strong>Publisher: </strong> {{ task.publisher }}</p>
-                                        <!-- <p><strong>Assignee: </strong> {{ task.assignee }}</p> -->
-                                        <p><strong>Type: </strong> {{ task.type.join(', ') }}</p>
-                                        <p><strong>Constraints: </strong> {{ task.constraints }}</p>
-                                        <p><strong>Reward: </strong> {{ task.reward }}</p>
-                                    </td>
-                                </tr>
-                            </ng-container>
-                        </tbody>
-                    </table>
-                </mat-tab>
-            </mat-tab-group>
-                
-            <div class="pagination-wrapper">
-                <pagination-controls class="pagination" (pageChange)="currentPage = $event"></pagination-controls>
-            </div>
-            <button mat-raised-button color="primary" (click)="handleButtonClick('add')" class="mx-auto d-block btn btn-lg btn-danger ">Add</button>
+    </div>
         </div>
+        <div class="task-table" *ngIf="currentTab === 'uncompleted'">
+            <div class="table-wrapper">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th style="width: 120px; height: 50px;">Title</th>
+                        <th style="width: 210px; height: 50px;">Completed</th>
+                <!-- <th colspan="2">
+                            <mat-button-toggle-group class="my-toggle-group" (change)="toggleTaskList($event.value)" aria-label="Toggle Button">
+                                <mat-button-toggle class="my-toggle" value="me">Me</mat-button-toggle>
+                                <mat-button-toggle class="my-toggle" value="other">Other</mat-button-toggle>
+                                <mat-button-toggle class="my-toggle" value="all">All</mat-button-toggle>
+                            </mat-button-toggle-group>
+                </th> -->
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let task of uncompletedTasks | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+                            <tr>
+                                <td>{{ task.title }}</td>
+                                <td>
+                                    <mat-slide-toggle [checked]="task.completed" (change)="toggleCompletedStatus(task)">
+                                        {{ task.completed ? 'Yes' : 'No' }}
+                                    </mat-slide-toggle>
+                                </td>
+                                <td>
+                                    <button mat-button (click)="task.showDetails = !task.showDetails">Details</button>
+                                </td>
+                                <td class="text-right">
+                            <button class="btn btn-success m-1" (click)="handleButtonClick('upload',task)">Upload</button>
+                            <button class="btn btn-info m-1" (click)="handleButtonClick('edit',task)">Edit</button>
+                                    <button class="btn btn-danger m-1" (click)="handleButtonClick('delete',task)">Delete</button>
+                                </td>
+                            </tr>
+                            <tr *ngIf="task.showDetails">
+                                <td colspan="5">
+                                    <p><strong>Description: </strong> {{ task.description }}</p>
+                                    <p><strong>Created: </strong> {{ task.createdate | date }}</p>
+                                    <p><strong>Modified: </strong> {{ task.modifydate | date }}</p>
+                                    <p><strong>Publisher: </strong> {{ task.publisher }}</p>
+                                    <!-- <p><strong>Assignee: </strong> {{ task.assignee }}</p> -->
+                            <p><strong>Type: </strong> {{ task.type }}</p>
+                            <p><strong>skills: </strong> {{ task.skills }}</p>
+                                    <p><strong>Reward: </strong> {{ task.reward }}</p>
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+                
+<div class="button-wrapper">
+    <div class="pagination-wrapper">
+        <pagination-controls class="pagination" (pageChange)="currentPage = $event"></pagination-controls>
     </div>
 </div>

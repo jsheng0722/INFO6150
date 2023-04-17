@@ -19,6 +19,23 @@ export class GlobaltaskService {
         .pipe(catchError(this.handleError));
     }
 
+    async getTasksSlow(page: number, pageSize: number = 10): Promise<{ tasks: any[], totalPages: number } | undefined> {
+      try {
+        return await this.http
+          .get<{ tasks: any[]; totalPages: number; }>(`${this.globalTaskApiUrl}/tasks`, {
+            params: {
+              page: page.toString(),
+              pageSize: pageSize.toString(),
+            },
+          })
+          .toPromise();
+      } catch (error) {
+        console.error('Error getting tasks:', error);
+        return undefined;
+      }
+    }
+    
+
     getTasks(): Observable<any> {
       return this.http
       .get(`${this.globalTaskApiUrl}/getAll`)
@@ -26,15 +43,27 @@ export class GlobaltaskService {
       catchError(this.handleError));
     }
 
-    getTaskById(taskId: String): Observable<any>{
+    getTaskById(taskId: string): Observable<any>{
       return this.http
-      .get(`${this.globalTaskApiUrl}/getTask/${taskId}`)
+      .get(`${this.globalTaskApiUrl}/getTaskId/${taskId}`)
+      .pipe(catchError(this.handleError));
+    }
+
+    getTaskByMd(taskMd: string): Observable<any>{
+      return this.http
+      .get(`${this.globalTaskApiUrl}/getTaskMd/${taskMd}`)
       .pipe(catchError(this.handleError));
     }
   
     searchTasks(taskType: string): Observable<any> {
       return this.http
       .get(`${this.globalTaskApiUrl}/search/${taskType}`)
+      .pipe(catchError(this.handleError));
+    }
+
+    deleteGlobalTask(taskMd: string): Observable<any> {
+      return this.http
+      .delete<any>(`${this.globalTaskApiUrl}/delete/${taskMd}`)
       .pipe(catchError(this.handleError));
     }
 

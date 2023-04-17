@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -6,17 +6,23 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   templateUrl: './type-form.component.html',
   styleUrls: ['./type-form.component.css']
 })
-export class TypeFormComponent {
+export class TypeFormComponent implements OnInit{
   typeForm: FormGroup;
   options: string[] = ['Animation', 'Brand/Graphic Design', 'UI/Visual Design', 'Product Design', 'Illustration', 'UX Design/Research', 'Leadership', 'Development', 'Web Design', 'Mobile Design', 'Writing', 'Marketing'];
   maxTypes = 3;
-  selectedTypes!: string[];
+  @Input() selectedTypes: string[] = [];
   @Output() typesSelected = new EventEmitter<string[]>();
   
   constructor(private formBuilder: FormBuilder) {
     this.typeForm = this.formBuilder.group({});
     this.options.forEach((option) => {
       this.typeForm.addControl(option, this.formBuilder.control(''));
+    });
+  }
+  
+  ngOnInit(): void {
+    this.options.forEach((option) => {
+      this.typeForm.controls[option].setValue(this.selectedTypes.includes(option));
     });
   }
 
@@ -41,6 +47,6 @@ export class TypeFormComponent {
     }
 
     this.selectedTypes = selectedOptions;
-    this.typesSelected.emit(selectedOptions);
+    this.typesSelected.emit(this.selectedTypes);
   }
 }

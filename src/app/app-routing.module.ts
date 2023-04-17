@@ -18,7 +18,6 @@ const routes: Routes = [
   { path: 'tasks/:id', component: TaskDetailPageComponent }
 ];
 
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

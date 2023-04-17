@@ -1,36 +1,38 @@
 <mat-dialog-content class="add-task-dialog-content">
   <button mat-icon-button class="close-button" (click)="onCancel()">
-    <mat-icon>X</mat-icon>
+    <mat-icon>x</mat-icon>
   </button>
   <h2>Add New Task</h2>
   <div class="container">
     <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label for="title">Title</label>
-        <input type="text" class="form-control" id="title" formControlName="title" maxlength="50" required>
+        <label for="title">Title <span class="required">*</span></label>
+        <input type="text" class="form-control" id="title" formControlName="title" maxlength="50" required placeholder="Example: Design a new logo">
         <small *ngIf="taskForm.get('title')?.value?.length > 30" class="form-text text-muted">Please enter less then 30 characters.</small>
       </div>
       <div class="form-group">
-        <label for="description">Description</label>
-        <textarea class="form-control" id="description" formControlName="description" minlength="5" maxlength="200" required></textarea>
+        <label for="description">Description <span class="required">*</span></label>
+        <textarea class="form-control" id="description" formControlName="description" minlength="5" maxlength="200" required placeholder="Example: We need a new logo for our startup company."></textarea>
         <small *ngIf="taskForm.get('description')?.value?.length < 5" class="form-text text-muted">Please enter at least 5 characters.</small>
         <small *ngIf="taskForm.get('description')?.value?.length > 200" class="form-text text-muted">Please enter less then 200 characters.</small>
       </div>
-      <!-- <div class="form-group">
-        <label for="assignee">Assignee</label>
-        <input type="text" class="form-control" id="assignee" formControlName="assignee" maxlength="50">
-      </div> -->
       <app-type-form (typesSelected)="onTypesSelected($event)"></app-type-form>
       
       <div class="form-group">
         <label for="constraints">Constraints</label>
-        <input type="text" class="form-control" id="constraints" formControlName="constraints" maxlength="200">
+        <input type="text" class="form-control" id="constraints" formControlName="constraints" maxlength="200" placeholder="Example: Must use our brand colors">
       </div>
       <div class="form-group">
-        <label for="reward">Reward</label>
-        <input type="text" class="form-control" id="reward" formControlName="reward" maxlength="50">
+        <label for="reward">Reward<span class="required">*</span></label>
+        <input type="text" class="form-control" id="reward" formControlName="reward" maxlength="50" placeholder="Example: $500">
       </div>
+      <br>
+      <br>
+      <br>
+      <div class="button-container">
+        <button type="button" class="btn btn-cancel" (click)="onCancel()">Cancel</button>
       <button type="submit" class="btn btn-primary" [disabled]="taskForm.invalid">Confirm Add</button>
+      </div>
     </form>
   </div>
 </mat-dialog-content>

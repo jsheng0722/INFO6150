@@ -1,7 +1,12 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 const GlobalTaskSchema = new mongoose.Schema({
     id: {
+        type: String,
+        require: true
+    },
+    md: {
         type: String,
         require: true
     },
@@ -48,4 +53,7 @@ const GlobalTaskSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('GlobalTask', GlobalTaskSchema);
+GlobalTaskSchema.plugin(mongoosePaginate);
+
+const GlobalTask = mongoose.model('GlobalTask', GlobalTaskSchema);
+module.exports = GlobalTask;

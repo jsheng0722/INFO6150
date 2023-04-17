@@ -9,6 +9,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class AcceptTaskComponent {
   task: any
+  isExist: boolean = false;
   constructor(
     private taskService: TaskService,
     public dialogRef: MatDialogRef<AcceptTaskComponent>,
@@ -17,26 +18,49 @@ export class AcceptTaskComponent {
   
   ngOnInit(): void {
     this.task = this.data.task;
+    console.log(this.task)
   }
   
   acceptTask() {
-    // check if task already exists
-    if (this.taskService.checkIfTaskExists(this.task)) {
-      window.alert('This task is already in the list.');
-      this.dialogRef.close();
-    } else {
-      this.taskService.addTask(this.task).subscribe({
-        next: () => {
-          window.alert('This task is already in the list.');
-          this.dialogRef.close();
-        },
-        error: (error) => {
-          console.log('Error while creating task:', error);
-        }
-      });
+    // Check if task already exists
+    this.taskService.getTaskById(this.task.md).subscribe({
+      next: () => {
+        // Task already exists
+        this.isExist = true;
+        console.log("fail");
+        window.alert('Task already exist.');
+        this.dialogRef.close();
+      },
+      error: () => {
+        // Task does not exist
+        console.log("succ");
+        this.isExist = false;
+  
+        // Add the task
+        this.task._id = this.task.md;
+        this.taskService.addTask(this.task).subscribe({
+          next: () => {
+            window.alert('Add successful.');
+            this.dialogRef.close();
+          },
+          error: (error) => {
+            console.log('Error while creating task:', error);
+          }
+        });
+      }
+    });
+  }
+  
+    
+  clicked():boolean{
+    if (this.task._id === this.task.md){
+      return true;
+    }else{
+      return false;
     }
   }
-    
+
+
   Oncancel(){
     this.dialogRef.close();
   }

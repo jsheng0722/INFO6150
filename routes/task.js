@@ -4,21 +4,39 @@ const Task = require("../models/Task");
 
 // add task
 router.post("/add", async (req, res) => {
-    const { title, description, completed, createdate, modifydate, publisher, assignee, type, constraints, reward } = req.body;
+    const { _id, title, description, completed, createdate, modifydate, publisher, assignee, type, constraints, reward } = req.body;
 
-        try {
-        const task = new Task({
-            title,
-            description,
-            completed,
-            createdate,
-            modifydate,
-            publisher,
-            assignee,
-            type,
-            constraints,
-            reward
-        });
+    try {
+        let task = await Task.findOne({ _id });
+
+        if (task) {
+            // If task already exists, update it
+            task.title = title;
+            task.description = description;
+            task.completed = completed;
+            task.createdate = createdate;
+            task.modifydate = modifydate;
+            task.publisher = publisher;
+            task.assignee = assignee;
+            task.type = type;
+            task.constraints = constraints;
+            task.reward = reward;
+        } else {
+            // If task does not exist, create it
+            task = new Task({
+                _id,
+                title,
+                description,
+                completed,
+                createdate,
+                modifydate,
+                publisher,
+                assignee,
+                type,
+                constraints,
+                reward
+            });
+        }
 
         await task.save();
         res.json({ task });
@@ -32,20 +50,16 @@ router.post("/add", async (req, res) => {
 router.delete("/delete/:id", async (req, res) => {
     try {
         const task = await Task.findById(req.params.id);
-
         if (!task) {
             return res.status(404).json({ msg: "Task not found" });
         }
-
         await task.deleteOne();
         res.json({ msg: "Task removed" });
     } catch (err) {
     console.error(err.message);
-
     if (err.kind === "ObjectId") {
         return res.status(404).json({ msg: "Task not found" });
     }
-
     res.status(500).send("Server error");
     }
 });
@@ -114,6 +128,17 @@ router.put("/updateCompleted/:id", async (req, res) => {
             return res.status(404).json({ msg: "Task not found" });
         }
         res.status(500).send("Server error");
+    }
+});
+
+router.get("/getId/:id", async (req, res) => {
+    try {
+      const task = await Task.findById(req.params.id);
+      if (!task) return res.status(404).json({ msg: "Task not found" });
+      res.json(task);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server error");
     }
 });
 

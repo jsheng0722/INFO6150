@@ -41,9 +41,12 @@ import { UploadTaskComponent } from './task-list/upload-task/upload-task.compone
 import { AcceptTaskComponent } from './accept-task/accept-task.component';
 
 import { NgxPaginationModule } from 'ngx-pagination';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { CardListComponent } from './card-list/card-list.component';
 import { CardComponent } from './card/card.component';
 import { TypeFormComponent } from './type-form/type-form.component';
+
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 @NgModule({
   declarations: [
@@ -85,7 +88,9 @@ import { TypeFormComponent } from './type-form/type-form.component';
     MatCheckboxModule,
     FormsModule,
     NgbOffcanvasModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    InfiniteScrollModule,
+    LazyLoadImageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

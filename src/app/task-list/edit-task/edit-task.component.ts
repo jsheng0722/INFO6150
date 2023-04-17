@@ -11,6 +11,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 export class EditTaskComponent implements OnInit {
   taskForm!: FormGroup;
+  typesSelected!: string[];
+  options!: string[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,11 +35,15 @@ export class EditTaskComponent implements OnInit {
       constraints: [task.constraints],
       reward: [task.reward]
     });
+    this.typesSelected = task.type;
+    // console.log(this.typesSelected)
   }
   
   onSubmit(): void {
     if (this.taskForm.valid) {
       const updatedTask: any = this.taskForm.value;
+      updatedTask.type = this.typesSelected;
+      // console.log(updatedTask)
       this.taskService.modifyTask(updatedTask.id, updatedTask).subscribe({
         next: () => {
           window.alert('Task updated successfully:');
@@ -49,6 +55,11 @@ export class EditTaskComponent implements OnInit {
         }
       });
     }
+  }
+
+  onTypesSelected(types: string[]) {
+    this.typesSelected = types
+    // console.log(this.typesSelected)
   }
 
   onCancel(){

@@ -24,8 +24,8 @@ export class AuthService {
         // Set username if login successful
         if (res.success) {
           this.setUsername(res.user.username);
-          // localStorage.setItem('access_token', res.token);
-          // localStorage.setItem('username', res.user.username);
+          localStorage.setItem('access_token', res.token);
+          localStorage.setItem('username', res.user.username);
           // const tokenPayload = JSON.parse(atob(res.token.split('.')[1]));
           // const expirationDate = new Date(tokenPayload.exp * 1000);
           // localStorage.setItem('token_expiration', expirationDate.toString());
@@ -46,7 +46,7 @@ export class AuthService {
       tap((res: any) => {
         // Set username if register successful
         if (res.success) {
-          this.setUsername(username);
+          this.setUsername(email);
         }
       }),
       catchError((error: any) => {

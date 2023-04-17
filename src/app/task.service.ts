@@ -45,14 +45,11 @@ export class TaskService {
         .get(`${this.apiUrl}/getAll`)
         .pipe(catchError(this.handleError));
     }
-
-    // check if already exist or not
-    checkIfTaskExists(taskId: string): Observable<boolean> {
-        const url = `${this.apiUrl}/checkIfExists/${taskId}`;
-        return this.http.get<boolean>(url).pipe(
-          catchError(this.handleError)
-        );
-    }
+    getTaskById(taskId: string): Observable<any>{
+        return this.http
+        .get(`${this.apiUrl}/getId/${taskId}`)
+        .pipe(catchError(this.handleError));
+      }
 
     // Handle error
     private handleError(error: any) {

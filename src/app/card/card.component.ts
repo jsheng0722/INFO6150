@@ -19,10 +19,17 @@ export class CardComponent implements OnInit{
 
 
   imagePath = 'assets/images';
+  imageBack!: string;
+  defaultImagePath = 'assets/images/p1.jpg';
 
   ngOnInit(): void {
     if (this.title && this.title.length > this.maxTitleLength) {
       this.isTitleFull = true;
     }
+    
+    // generate random number from 1-40
+    const randomImageNumber = Math.floor(Math.random() * 40) + 1;
+    // pic route
+    this.imageBack = `imageBack (${randomImageNumber})`;
   }
 }
