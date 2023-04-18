@@ -19,21 +19,21 @@ export class GlobaltaskService {
         .pipe(catchError(this.handleError));
     }
 
-    async getTasksSlow(page: number, pageSize: number = 10): Promise<{ tasks: any[], totalPages: number } | undefined> {
-      try {
-        return await this.http
-          .get<{ tasks: any[]; totalPages: number; }>(`${this.globalTaskApiUrl}/tasks`, {
-            params: {
-              page: page.toString(),
-              pageSize: pageSize.toString(),
-            },
-          })
-          .toPromise();
-      } catch (error) {
-        console.error('Error getting tasks:', error);
-        return undefined;
-      }
-    }
+    // async getTasksSlow(page: number, pageSize: number = 10): Promise<{ tasks: any[], totalPages: number } | undefined> {
+    //   try {
+    //     return await this.http
+    //       .get<{ tasks: any[]; totalPages: number; }>(`${this.globalTaskApiUrl}/tasks`, {
+    //         params: {
+    //           page: page.toString(),
+    //           pageSize: pageSize.toString(),
+    //         },
+    //       })
+    //       .toPromise();
+    //   } catch (error) {
+    //     console.error('Error getting tasks:', error);
+    //     return undefined;
+    //   }
+    // }
     
 
     getTasks(): Observable<any> {

@@ -14,9 +14,10 @@ export class MainComponent {
   tasks!: any[];
   searchKw!: string;
   
-  currentPage: number = 1;
-  totalPages: number = 10;
-  isLoading: boolean = false;
+  // currentPage: number = 1;
+  // totalPages: number = 10;
+  // isLoading: boolean = false;
+
 
   constructor(private globaltaskService : GlobaltaskService){
 
@@ -45,46 +46,46 @@ export class MainComponent {
     });
   }
 
-  async loadTasks() {
-    try {
-      this.isLoading = true;
-      const response = await this.globaltaskService.getTasksSlow(1, 10);
+  // async loadTasks() {
+  //   try {
+  //     this.isLoading = true;
+  //     const response = await this.globaltaskService.getTasksSlow(1, 10);
   
-      if (response) {
-        this.totalPages = response.totalPages;
-        this.tasks = response.tasks;
-      }
-    } catch (error) {
-      console.error('Error loading initial tasks:', error);
-    } finally {
-      this.isLoading = false;
-    }
-  }
+  //     if (response) {
+  //       this.totalPages = response.totalPages;
+  //       this.tasks = response.tasks;
+  //     }
+  //   } catch (error) {
+  //     console.error('Error loading initial tasks:', error);
+  //   } finally {
+  //     this.isLoading = false;
+  //   }
+  // }
   
 
-  async loadMoreTasks() {
-    if (this.currentPage >= this.totalPages) {
-      return;
-    }
+  // async loadMoreTasks() {
+  //   if (this.currentPage >= this.totalPages) {
+  //     return;
+  //   }
   
-    if (this.isLoading) {
-      return;
-    }
+  //   if (this.isLoading) {
+  //     return;
+  //   }
   
-    this.isLoading = true;
-    this.currentPage++;
+  //   this.isLoading = true;
+  //   this.currentPage++;
   
-    try {
-      const response = await this.globaltaskService.getTasksSlow(this.currentPage, 10);
+  //   try {
+  //     const response = await this.globaltaskService.getTasksSlow(this.currentPage, 10);
   
-      if (response) {
-        this.totalPages = response.totalPages;
-        this.tasks = [...this.tasks, ...response.tasks];
-      }
-    } catch (error) {
-      console.error('Error loading more tasks:', error);
-    } finally {
-      this.isLoading = false;
-    }
-  }
+  //     if (response) {
+  //       this.totalPages = response.totalPages;
+  //       this.tasks = [...this.tasks, ...response.tasks];
+  //     }
+  //   } catch (error) {
+  //     console.error('Error loading more tasks:', error);
+  //   } finally {
+  //     this.isLoading = false;
+  //   }
+  // }
 }
