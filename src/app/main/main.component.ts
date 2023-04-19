@@ -13,11 +13,6 @@ export class MainComponent {
   searchResults!: any[];
   tasks!: any[];
   searchKw!: string;
-  
-  // currentPage: number = 1;
-  // totalPages: number = 10;
-  // isLoading: boolean = false;
-
 
   constructor(private globaltaskService : GlobaltaskService){
 

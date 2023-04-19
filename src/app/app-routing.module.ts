@@ -7,6 +7,7 @@ import { TaskGlobalPageComponent } from './task-global-page/task-global-page.com
 import { TaskDetailPageComponent } from './task-detail-page/task-detail-page.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ManagePageComponent } from './manage-page/manage-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -15,7 +16,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'task', component: TaskPageComponent },
   { path: 'globalTask', component: TaskGlobalPageComponent },
-  { path: 'manage', component: TaskDetailPageComponent },
+  { path: 'manage', component: ManagePageComponent },
   { path: 'tasks/:id', component: TaskDetailPageComponent }
 ];
 

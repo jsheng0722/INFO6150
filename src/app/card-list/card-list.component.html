@@ -1,9 +1,14 @@
 <h1>Tasks {{searchKw ? 'for "' + searchKw + '"' : ''}}</h1>
 <div class="card-list">
-    <app-card *ngFor="let task of tasks" 
+    <app-card *ngFor="let task of tasks | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }" 
                 [id]="task._id" 
                 [title]="task.title" 
                 [publisher]="task.publisher" 
                 [date]="task.modifydate">
     </app-card>
+</div>
+<div class="button-wrapper">
+    <div class="pagination-wrapper">
+        <pagination-controls class="pagination" (pageChange)="currentPage = $event"></pagination-controls>
+    </div>
 </div>

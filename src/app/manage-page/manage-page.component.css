@@ -1,0 +1,81 @@
+.container {
+    margin-top: 50px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    color: #333;
+    font-size: 40px;
+    text-shadow: 3px 3px 0 #ddd;
+}
+
+table {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+th {
+    background-color: #799bbd;
+    color: #fff;
+    padding: 15px;
+    text-align: left;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 2px solid #444;
+  }
+
+td {
+    padding: 10px 15px;
+    font-size: 16px;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+    background-color: #f9f9f9;
+}
+
+.btn-danger {
+    background-color: #c0392b;
+    border-color: #c0392b;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.btn-danger:hover {
+    background-color: #a83225;
+    border-color: #a83225;
+}
+
+.table {
+    width: 100%;
+}
+
+.button-wrapper {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+@media screen and (min-width: 768px) {
+    .table {
+    width: 80%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .table {
+    width: 60%;
+    }
+}
+  

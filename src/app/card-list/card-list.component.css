@@ -22,3 +22,11 @@ h1::before {
     content: "";
     margin-bottom: 10px;
 }
+
+.button-wrapper {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}

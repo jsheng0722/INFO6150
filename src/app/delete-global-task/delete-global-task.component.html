@@ -1,0 +1,9 @@
+<mat-dialog-content class="delete-global-task-dialog-content">
+    <div class="model">
+      <p>Are you sure you want to delete the task "{{ task.title }}"?</p>
+      <p>
+        <button mat-button color="warn" (click)="deleteTask()">Yes</button>
+        <button mat-button (click)="cancel()">No</button>
+      </p>
+    </div>
+  </mat-dialog-content>

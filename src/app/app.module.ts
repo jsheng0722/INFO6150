@@ -48,6 +48,7 @@ import { TypeFormComponent } from './type-form/type-form.component';
 
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { ManagePageComponent } from './manage-page/manage-page.component';
+import { DeleteGlobalTaskComponent } from './delete-global-task/delete-global-task.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { ManagePageComponent } from './manage-page/manage-page.component';
     CardComponent,
     TypeFormComponent,
     ManagePageComponent,
+    DeleteGlobalTaskComponent,
   ],
   imports: [
     BrowserModule,

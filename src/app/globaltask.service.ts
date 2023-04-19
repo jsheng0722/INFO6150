@@ -67,6 +67,12 @@ export class GlobaltaskService {
       .pipe(catchError(this.handleError));
     }
 
+    deleteGlobalTaskById(taskId: string): Observable<any> {
+      return this.http
+      .delete<any>(`${this.globalTaskApiUrl}/deleteid/${taskId}`)
+      .pipe(catchError(this.handleError));
+    }
+
     // Handle error
     private handleError(error: any) {
         console.error(error);

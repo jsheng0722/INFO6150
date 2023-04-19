@@ -89,6 +89,22 @@ router.delete("/delete/:md", async (req, res) => {
     }
 });
 
+router.delete("/deleteid/:id", async (req, res) => {
+  try {
+    const task = await GlobalTask.findById(req.params.id);
+    if (!task) {
+        return res.status(404).json({ msg: "Task not found" });
+    }
+    await task.deleteOne();
+    res.json({ msg: "Task removed" });
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind === "ObjectId") {
+        return res.status(404).json({ msg: "Task not found" });
+    }
+    res.status(500).send("Server error");
+    }
+});
 
 
 router.get('/tasks', async (req, res) => {
