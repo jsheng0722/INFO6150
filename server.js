@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB connection
-mongoose.connect('mongodb+srv://dbUser:Hongqi1017@cluster0.otd8w5p.mongodb.net/test', {
+mongoose.connect('mongodb+srv://shengjih0722:mongodb@cluster0.evqkt3s.mongodb.net/test', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -22,6 +22,7 @@ db.once('open', () => {
 // Add authentication routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/task', require('./routes/task'));
+app.use('/api/admin', require('./routes/admin'));
 app.use('/api/globaltask', require('./routes/globalTask'));
 
 // Start the server

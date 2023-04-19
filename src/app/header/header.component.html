@@ -19,6 +19,11 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/globalTask" (click)="closeOffcanvas()">Task</a>
         </li>
+        <ng-container *ngIf="isAdminLoggedIn">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/manage" (click)="closeOffcanvas()">Manage</a>
+          </li>
+        </ng-container>
         <li class="nav-item nav-divider"></li>
       </ul>
       <ul class="navbar-nav ms-auto">

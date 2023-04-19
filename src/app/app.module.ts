@@ -47,6 +47,7 @@ import { CardComponent } from './card/card.component';
 import { TypeFormComponent } from './type-form/type-form.component';
 
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { ManagePageComponent } from './manage-page/manage-page.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     CardListComponent,
     CardComponent,
     TypeFormComponent,
+    ManagePageComponent,
   ],
   imports: [
     BrowserModule,

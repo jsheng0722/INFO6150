@@ -32,6 +32,7 @@ npm install:
     ng-lazyload-image           : Too much img，lazyload for speeding
     ngx-infinite-scroll
     mongoose-paginate-v2
+    @types/jwt-decode
 
 ng add @angular/material
 

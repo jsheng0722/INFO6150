@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject, throwError } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
+import { Observable, BehaviorSubject, throwError, tap, catchError } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -21,10 +20,11 @@ export class AuthService {
     this.isLoggedIn = true;
     return this.http.post<any>(url, { email, password }).pipe(
       tap((res: any) => {
+        console.log(res);
         // Set username if login successful
         if (res.success) {
           this.setUsername(res.user.username);
-          localStorage.setItem('access_token', res.token);
+          localStorage.setItem('user_token', res.userToken);
           localStorage.setItem('username', res.user.username);
           // const tokenPayload = JSON.parse(atob(res.token.split('.')[1]));
           // const expirationDate = new Date(tokenPayload.exp * 1000);
@@ -79,7 +79,7 @@ export class AuthService {
   // Add this method to AuthService class
   logout(): void{
     this.isLoggedIn = false;
-    localStorage.removeItem('access_token');
+    localStorage.removeItem('user_token');
     localStorage.removeItem('username');
     this.returnUrl = '';
     this.router.navigateByUrl('');
@@ -88,7 +88,7 @@ export class AuthService {
 
   // judge if login already
   getisLoggedIn(): boolean {
-    const token = localStorage.getItem('access_token');
+    const token = localStorage.getItem('user_token');
     return token !== null;
   }
 

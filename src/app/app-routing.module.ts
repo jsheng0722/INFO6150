@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'task', component: TaskPageComponent },
   { path: 'globalTask', component: TaskGlobalPageComponent },
+  { path: 'manage', component: TaskDetailPageComponent },
   { path: 'tasks/:id', component: TaskDetailPageComponent }
 ];
 
